@@ -32,7 +32,6 @@
 
 	var Datepicker = function(element, options) {
 		var that = this;
-
 		this.element = $(element);
 		this.language = options.language||this.element.data('date-language')||"en";
 		this.language = this.language in dates ? this.language : this.language.split('-')[0]; //Check if "de-DE" style date is available, if not language should fallback to 2 letter code eg "de"
@@ -43,7 +42,11 @@
 		this.isInput = this.element.is('input');
 		this.component = this.element.is('.date') ? this.element.find('.add-on, .btn') : false;
 		this.hasInput = this.component && this.element.find('input').length;
-		if(this.component && this.component.length === 0)
+		this.container = options.container;
+        if(this.container == undefined){
+            this.container = 'body';
+        }
+        if(this.component && this.component.length === 0)
 			this.component = false;
 
 		this.forceParse = true;
@@ -52,8 +55,7 @@
 		} else if ('dateForceParse' in this.element.data()) {
 			this.forceParse = this.element.data('date-force-parse');
 		}
-
-		this.picker = $(DPGlobal.template);
+        this.picker = $(DPGlobal.template);
 		this._buildEvents();
 		this._attachEvents();
 
@@ -234,9 +236,9 @@
 			this._unapplyEvents(this._secondaryEvents);
 		},
 
-		show: function(e) {
-			if (!this.isInline)
-				this.picker.appendTo('body');
+		show: function(e,options) {
+            if (!this.isInline)
+				this.picker.appendTo($(this.container));
 			this.picker.show();
 			this.height = this.component ? this.component.outerHeight() : this.element.outerHeight();
 			this.place();

@@ -4,7 +4,6 @@
 angular.module('$strap.directives')
 
 .directive('bsDatepicker', function($timeout, $strapConfig) {
-
   var isAppleTouch = /(iP(a|o)d|iPhone)/g.test(navigator.userAgent);
 
   var regexpMap = function regexpMap(language) {
@@ -53,7 +52,7 @@ angular.module('$strap.directives')
           type = attrs.dateType || options.type || 'date';
 
       // $.fn.datepicker options
-      angular.forEach(['format', 'weekStart', 'calendarWeeks', 'startDate', 'endDate', 'daysOfWeekDisabled', 'autoclose', 'startView', 'minViewMode', 'todayBtn', 'todayHighlight', 'keyboardNavigation', 'language', 'forceParse'], function(key) {
+      angular.forEach(['format', 'weekStart', 'calendarWeeks', 'startDate', 'endDate', 'daysOfWeekDisabled', 'autoclose', 'startView', 'minViewMode', 'todayBtn', 'todayHighlight', 'keyboardNavigation', 'language', 'forceParse','container'], function(key) {
         if(angular.isDefined(attrs[key])) options[key] = attrs[key];
       });
 

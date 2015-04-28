@@ -300,7 +300,8 @@ angular.module('$strap.directives').directive('bsDatepicker', [
           'todayHighlight',
           'keyboardNavigation',
           'language',
-          'forceParse'
+          'forceParse',
+          'container'
         ], function (key) {
           if (angular.isDefined(attrs[key]))
             options[key] = attrs[key];
